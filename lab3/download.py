@@ -11,12 +11,12 @@ def download_data():
 def clear_data(path2df):
     df = pd.read_csv(path2df)
     
-    data = data[data['PRICE']<=4.28]
-    data = data[data['MedInc']<=7.32]
-    data = data[(data['AveRooms']<=7.8) & (data['AveRooms']>=2.5)]
-    data = data[(data['AveBedrms']<=1.2) & (data['AveBedrms']>=0.89)]
-    data = data[data['Population']<=2500]
-    data = data[(data['AveOccup']<=4.3) & (data['AveOccup']>=1.27)]
+    df = df[df['PRICE']<=4.28]
+    df = df[df['MedInc']<=7.32]
+    df = df[(df['AveRooms']<=7.8) & (df['AveRooms']>=2.5)]
+    df = df[(df['AveBedrms']<=1.2) & (df['AveBedrms']>=0.89)]
+    df = df[df['Population']<=2500]
+    df = df[(df['AveOccup']<=4.3) & (df['AveOccup']>=1.27)]
     
     df.to_csv('df_clear.csv')
     return True
