@@ -18,7 +18,8 @@ def eval_metrics(actual, pred):
 
 
 if __name__ == "__main__":
-    df = pd.read_csv("./df_clear.csv")
+    df = pd.read_csv("./df_clear.csv", index_col = 0)
+    df.fillna(0, inplace=True)
     '''X,Y, power_trans = scale_frame(df)
     X_train, X_val, y_train, y_val = train_test_split(X, Y,
                                                     test_size=0.3,
