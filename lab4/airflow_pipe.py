@@ -23,8 +23,8 @@ def download_data():
     df['PRICE'] = california_dataset.target
     df.to_csv("houses.csv", index = False)
     return df
-def clear_data(path2df):
-    df = pd.read_csv(path2df)
+def clear_data():
+    df = pd.read_csv('houses.csv')
     
     df = df[df['PRICE']<=4.28]
     df = df[df['MedInc']<=7.32]
@@ -36,7 +36,7 @@ def clear_data(path2df):
     df.to_csv('df_clear.csv')
     return True
 
-dag_cars = DAG(
+dag_houses = DAG(
     dag_id="train_pipe",
     start_date=datetime(2025, 2, 3),
     concurrency=4,
@@ -45,7 +45,7 @@ dag_cars = DAG(
     max_active_runs=1,
     catchup=False,
 )
-download_task = PythonOperator(python_callable=download_data, task_id = "download_cars", dag = dag_cars)
-clear_task = PythonOperator(python_callable=clear_data, task_id = "clear_cars", dag = dag_cars)
-train_task = PythonOperator(python_callable=train, task_id = "train_cars", dag = dag_cars)
+download_task = PythonOperator(python_callable=download_data, task_id = "download_houses", dag = dag_houses)
+clear_task = PythonOperator(python_callable=clear_data, task_id = "clear_houses", dag = dag_houses)
+train_task = PythonOperator(python_callable=train, task_id = "train_houses", dag = dag_houses)
 download_task >> clear_task >> train_task
