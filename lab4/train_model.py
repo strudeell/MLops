@@ -13,11 +13,16 @@ import joblib
 
 def scale_frame(frame):
     df = frame.copy()
-    X,y = df.drop(columns = ['PRICE']), df['PRICE']
+    X, y = df.drop(columns=['PRICE']), df['PRICE']
     scaler = StandardScaler()
     power_trans = PowerTransformer()
+    
+    # Scale features
     X_scale = scaler.fit_transform(X.values)
-    Y_scale = power_trans.fit_transform(y.values.reshape(-1,1))
+    
+    # Reshape y to 2D array for PowerTransformer and transform
+    Y_scale = power_trans.fit_transform(y.values.reshape(-1, 1))
+    
     return X_scale, Y_scale, power_trans
 
 def eval_metrics(actual, pred):
@@ -27,47 +32,51 @@ def eval_metrics(actual, pred):
     return rmse, mae, r2
 
 
+
 def train():
     df = pd.read_csv("./df_clear.csv")
-    X,Y, power_trans = scale_frame(df)
+    X, Y, power_trans = scale_frame(df)
     prices = df['PRICE']
     features = df.drop('PRICE', axis=1)
 
     X_train, X_test, y_train, y_test = train_test_split(features, prices, test_size=0.2, random_state=10)
-    
 
-    #Ridge
-    params = {'alpha': [0.0001, 0.001, 0.01, 0.05, 0.1 ],
-        'max_iter':[800,900,1000,1100],
-        'tol':[0.0001, 0.001, 0.0004],
-        'fit_intercept':[False, True]
+    # Ridge regression
+    params = {
+        'alpha': [0.0001, 0.001, 0.01, 0.05, 0.1],
+        'max_iter': [800, 900, 1000, 1100],
+        'tol': [0.0001, 0.001, 0.0004],
+        'fit_intercept': [False, True]
     }
-    mlflow.set_experiment('models for houses')
+
+    mlflow.set_experiment('test2')
 
     with mlflow.start_run():
-        lr = SGDRegressor(random_state=42)
-        clf = GridSearchCV(lr, params, cv = 3, n_jobs = 4)
-        clf.fit(X_train, y_train.reshape(-1))
+        lr = Ridge(random_state=42)
+        clf = GridSearchCV(lr, params, cv=3, n_jobs=4)
+        clf.fit(X_train, y_train)
         best = clf.best_estimator_
-        y_pred = best.predict(X_val)
-        y_price_pred = power_trans.inverse_transform(y_pred.reshape(-1,1))
-        (rmse, mae, r2)  = eval_metrics(power_trans.inverse_transform(y_val), y_price_pred)
-        alpha = best.alpha
-        l1_ratio = best.l1_ratio
-        penalty = best.penalty
-        eta0 = best.eta0
-        mlflow.log_param("alpha", alpha)
-        mlflow.log_param("l1_ratio", l1_ratio)
-        mlflow.log_param("penalty", penalty)
-        mlflow.log_param("eta0", eta0)
-        mlflow.log_param("loss", best.loss)
+        
+        # Predict and inverse transform
+        y_pred = best.predict(X_test)
+        y_price_pred = power_trans.inverse_transform(y_pred.reshape(-1, 1))  # Reshape to 2D
+        
+        # Inverse transform y_test for evaluation (reshape if needed)
+        y_test_vals = y_test.values.reshape(-1, 1) if len(y_test.shape) == 1 else y_test
+        y_test_inv = power_trans.inverse_transform(y_test_vals)
+        
+        (rmse, mae, r2) = eval_metrics(y_test_inv, y_price_pred)
+        
+        # Log parameters
+        mlflow.log_param("alpha", best.alpha)
         mlflow.log_param("fit_intercept", best.fit_intercept)
-        mlflow.log_param("epsilon", best.epsilon)
-
+        
+        # Log metrics
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
-
+        
+        # Log model
         predictions = best.predict(X_train)
         signature = infer_signature(X_train, predictions)
         mlflow.sklearn.log_model(best, "model", signature=signature)
