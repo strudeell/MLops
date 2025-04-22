@@ -19,10 +19,6 @@ def eval_metrics(actual, pred):
 
 if __name__ == "__main__":
     df = pd.read_csv("./df_clear.csv")
-    '''X,Y, power_trans = scale_frame(df)
-    X_train, X_val, y_train, y_val = train_test_split(X, Y,
-                                                    test_size=0.3,
-                                                    random_state=42)'''
     prices = df['PRICE']
     features = df.drop('PRICE', axis=1)
 
@@ -64,7 +60,7 @@ if __name__ == "__main__":
         signature = infer_signature(X_train, predictions)
         mlflow.sklearn.log_model(best, "model", signature=signature)
 
-        with open("lr_cars.pkl", "wb") as file:
+        with open("lr_houses.pkl", "wb") as file:
             joblib.dump(best, file)
 
     dfruns = mlflow.search_runs()
