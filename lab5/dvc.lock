@@ -1,0 +1,89 @@
+schema: '2.0'
+stages:
+  prepare_dataset:
+    cmd: python src/stages/prepare_dataset.py
+    deps:
+    - path: src/config.yaml
+      hash: md5
+      md5: 38fbdb9ac471e9394467d8374e761e95
+      size: 534
+    - path: src/stages/prepare_dataset.py
+      hash: md5
+      md5: ad49398bc9b3216e1e78ddd6e1c07e42
+      size: 2493
+    outs:
+    - path: ./data/final.csv
+      hash: md5
+      md5: 179a47fa25685b1e78bfa181edba427c
+      size: 2205824
+  data_split:
+    cmd: python src/stages/data_splite.py
+    deps:
+    - path: ./data/final.csv
+      hash: md5
+      md5: 179a47fa25685b1e78bfa181edba427c
+      size: 2205824
+    - path: src/config.yaml
+      hash: md5
+      md5: 38fbdb9ac471e9394467d8374e761e95
+      size: 534
+    - path: src/stages/data_splite.py
+      hash: md5
+      md5: bd60e1d6be4fa9f50b617db37d784651
+      size: 957
+    outs:
+    - path: ./data/test_houses.csv
+      hash: md5
+      md5: fc01f6856edcc19270ff1b9cf8133fd1
+      size: 437343
+    - path: ./data/train_houses.csv
+      hash: md5
+      md5: df308388889626c6db844ddd1fc9835d
+      size: 1745991
+  train:
+    cmd: python src/stages/train.py
+    deps:
+    - path: ./data/test_houses.csv
+      hash: md5
+      md5: fc01f6856edcc19270ff1b9cf8133fd1
+      size: 437343
+    - path: ./data/train_houses.csv
+      hash: md5
+      md5: df308388889626c6db844ddd1fc9835d
+      size: 1745991
+    - path: src/config.yaml
+      hash: md5
+      md5: 38fbdb9ac471e9394467d8374e761e95
+      size: 534
+    - path: src/stages/train.py
+      hash: md5
+      md5: b95bb91b99e30344663747487f4c37ee
+      size: 351
+    outs:
+    - path: ./models/houses.joblib
+      hash: md5
+      md5: b56d3b307ad72fe4efd3d088a36eee56
+      size: 1197
+    - path: ./models/power.joblib
+      hash: md5
+      md5: 11e1e412958d1ccdbfb0b45b6517f233
+      size: 662
+  test_model:
+    cmd: python src/stages/test_model.py
+    deps:
+    - path: ./models/houses.joblib
+      hash: md5
+      md5: b56d3b307ad72fe4efd3d088a36eee56
+      size: 1197
+    - path: ./models/power.joblib
+      hash: md5
+      md5: 11e1e412958d1ccdbfb0b45b6517f233
+      size: 662
+    - path: src/config.yaml
+      hash: md5
+      md5: 38fbdb9ac471e9394467d8374e761e95
+      size: 534
+    - path: src/stages/test_model.py
+      hash: md5
+      md5: 983a0fb0c09804f3c4e113a4af3502d1
+      size: 754
