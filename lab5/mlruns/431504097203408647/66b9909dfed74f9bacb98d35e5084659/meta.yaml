@@ -1,0 +1,15 @@
+artifact_uri: file:///home/diana/dvc/dvc_houses/mlruns/431504097203408647/66b9909dfed74f9bacb98d35e5084659/artifacts
+end_time: 1745325740214
+entry_point_name: ''
+experiment_id: '431504097203408647'
+lifecycle_stage: active
+run_id: 66b9909dfed74f9bacb98d35e5084659
+run_name: overjoyed-finch-191
+run_uuid: 66b9909dfed74f9bacb98d35e5084659
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1745325735659
+status: 3
+tags: []
+user_id: diana

@@ -1,0 +1,6 @@
+artifact_location: file:///home/diana/dvc/dvc_houses/mlruns/431504097203408647
+creation_time: 1745325735344
+experiment_id: '431504097203408647'
+last_update_time: 1745325735344
+lifecycle_stage: active
+name: linear model houses
