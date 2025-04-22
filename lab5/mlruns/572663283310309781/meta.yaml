@@ -1,6 +1,6 @@
-artifact_location: file:///home/diana/dvc/dvc_lab/mlruns/572663283310309781
+artifact_location: file:///home/diana/dvc/lab5/mlruns/572663283310309781
 creation_time: 1744281064205
 experiment_id: '572663283310309781'
 last_update_time: 1744281064205
 lifecycle_stage: active
-name: linear model cars
+name: linear model houses
