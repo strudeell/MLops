@@ -1,0 +1,15 @@
+artifact_uri: file:///home/diana/dvc/dvc_lab/mlruns/572663283310309781/8877382bae5644e18466bd982d42d54d/artifacts
+end_time: 1744282882743
+entry_point_name: ''
+experiment_id: '572663283310309781'
+lifecycle_stage: active
+run_id: 8877382bae5644e18466bd982d42d54d
+run_name: rebellious-hog-264
+run_uuid: 8877382bae5644e18466bd982d42d54d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744282802298
+status: 4
+tags: []
+user_id: diana

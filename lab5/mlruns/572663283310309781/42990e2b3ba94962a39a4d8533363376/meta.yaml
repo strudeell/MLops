@@ -1,0 +1,15 @@
+artifact_uri: file:///home/diana/dvc/dvc_lab/mlruns/572663283310309781/42990e2b3ba94962a39a4d8533363376/artifacts
+end_time: 1744537153006
+entry_point_name: ''
+experiment_id: '572663283310309781'
+lifecycle_stage: active
+run_id: 42990e2b3ba94962a39a4d8533363376
+run_name: nimble-whale-738
+run_uuid: 42990e2b3ba94962a39a4d8533363376
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744537021063
+status: 4
+tags: []
+user_id: diana

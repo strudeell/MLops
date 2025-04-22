@@ -1,0 +1,15 @@
+artifact_uri: file:///home/diana/dvc/dvc_lab/mlruns/572663283310309781/bd4422760d2b492bbccefacdf84723ab/artifacts
+end_time: 1744281486097
+entry_point_name: ''
+experiment_id: '572663283310309781'
+lifecycle_stage: active
+run_id: bd4422760d2b492bbccefacdf84723ab
+run_name: legendary-flea-786
+run_uuid: bd4422760d2b492bbccefacdf84723ab
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744281382734
+status: 4
+tags: []
+user_id: diana

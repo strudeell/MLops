@@ -1,0 +1,15 @@
+artifact_uri: file:///home/diana/dvc/dvc_lab/mlruns/572663283310309781/e853a6787f4548978afab8d02a3ea690/artifacts
+end_time: 1744537900400
+entry_point_name: ''
+experiment_id: '572663283310309781'
+lifecycle_stage: active
+run_id: e853a6787f4548978afab8d02a3ea690
+run_name: legendary-skunk-616
+run_uuid: e853a6787f4548978afab8d02a3ea690
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744537775743
+status: 4
+tags: []
+user_id: diana
