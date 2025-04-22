@@ -1,0 +1,15 @@
+artifact_uri: file:///home/diana/dvc/dvc_lab/mlruns/572663283310309781/2b849fca18f04a449aea3ee24cbd0028/artifacts
+end_time: 1744281169845
+entry_point_name: ''
+experiment_id: '572663283310309781'
+lifecycle_stage: active
+run_id: 2b849fca18f04a449aea3ee24cbd0028
+run_name: clean-kit-889
+run_uuid: 2b849fca18f04a449aea3ee24cbd0028
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744281064515
+status: 4
+tags: []
+user_id: diana
